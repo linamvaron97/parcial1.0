@@ -1,0 +1,95 @@
+/*creado por: Juan Pablo Rodriguez Lopez
+              Lina Marcela Varon Ovalle
+*/
+
+#include <iostream>
+#include <math.h>
+
+
+using namespace std;
+
+void raices (int a, int b, int c);
+void punto2();
+float funcion(float x);
+
+int main()
+{
+    int a,b,c;
+    cout << "Punto 1" << endl;
+    cout << "Ingrese cada coeficiente y pulse enter: " << endl;
+    cin>> a;
+    cin>>b;
+    cin>>c;
+    raices(a,b,c);
+
+    cout<<"punto 2b: "<<endl;
+    punto2();
+
+    return 0;
+}
+
+void raices (int a, int b, int c){
+
+    float x1,x2=0;
+    float raiz=0;
+
+    float r1 = pow(b,2);
+    r1 = r1- (4*a*c);
+
+    if(r1 < 0){
+        r1=r1*-1;
+        raiz = sqrt(r1);
+        x1= (-b + raiz)/(2*a);
+        x2= (-b - raiz)/(2*a);
+
+        cout << "La raiz es compleja conjugada" << endl;
+        cout << "Primera raiz: " << x1 << "i" << endl;
+        cout << "Segunda raiz: " << x2 << "i" <<endl;
+
+    }else{
+
+        raiz = sqrt(r1);
+        x1= (-b + raiz)/(2*a);
+        x2= (-b - raiz)/(2*a);
+
+        if(x1==(x2)){
+            cout << "las raices son de multiplicidad 2" << endl;
+        }else{
+            cout << "La raiz es multiplicidad conjugada " << endl;
+        }
+        cout << "Primera raiz: " << x1 << endl;
+        cout << "Segunda raiz: " << x2 << endl;
+    }
+}
+
+
+void punto2(){
+
+    float r1,r2,r3,r4,r5,rr=0;
+    int cont=0;
+    float res = 0.37851;
+
+
+    for(float i=-1;i<=1;i++){
+        r1=i-funcion(i);
+        r2=i-(i-1);
+        r3=funcion(i)-funcion(i-1);
+        r4=r1*(r2/r3);
+        if(i==-1){
+            r5=r4;
+        }
+        if((res<r4)&&(r4<r5) || (res>r4)&&(r4>r5)){
+            r5=r4;
+        }
+    }
+    cout << "la respuesta que mas se aproxima es: " << r5<<endl;
+
+}
+
+float funcion(float x){
+    float res=0;
+    res= pow(2,x);
+    res= res-1.3;
+    return res;
+
+}
